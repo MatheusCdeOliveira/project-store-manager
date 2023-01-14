@@ -2,7 +2,6 @@ const { productService } = require('../services');
 
 const getAll = async (_req, res) => {
   const products = await productService.getAll();
-  // if (products.type) return res.status(404).json(products.message);
   res.status(200).json(products);
 };
 
