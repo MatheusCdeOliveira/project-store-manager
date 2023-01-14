@@ -194,5 +194,24 @@
     "headers": [],
     "params": [],
     "tests": []
+  },
+  {
+    "_id": "c92d4d0b-ad78-4618-95b5-986f20899d53",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:3000/products",
+    "url": "localhost:3000/products",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2023-01-14T00:08:29.341Z",
+    "modified": "2023-01-14T00:11:58.665Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"name\": \"Matheusss\"\n}",
+      "form": []
+    },
+    "tests": []
   }
 ]
