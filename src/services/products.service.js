@@ -5,6 +5,10 @@ const productSchema = Joi.object({
   name: Joi.string().min(5).required(),
 }).required();
 
+const validateName = Joi.object({
+  name: Joi.string().min(5).required(),
+});
+
 const getAll = async () => {
   const products = await productsModel.getAll();
   return products;
@@ -14,6 +18,16 @@ const findById = async (productId) => {
   const product = await productsModel.findById(productId);
   if (!product) return { type: 'PRODUCT_NOT_FOUND', message: 'Product not found' };
   return product;
+};
+
+const update = async (id, name) => {
+  const { error } = validateName.validate({ name });
+  if (error) return { message: error.message };
+  const searchProduct = await productsModel.findById(id);
+  if (!searchProduct) return { type: 'PRODUCT_NOT_FOUND', message: 'Product not found' };
+  await productsModel.update(id, name);
+  const updatedProduct = await findById(id);
+  return updatedProduct;
 };
 
 const insert = async ({ name }) => {
@@ -28,4 +42,5 @@ module.exports = {
   getAll,
   findById,
   insert,
+  update,
 };

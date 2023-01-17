@@ -18,6 +18,8 @@ app.get('/products', productController.getAll);
 
 app.get('/products/:id', productController.findById);
 
+app.put('/products/:id', validationName, productController.update);
+
 app.post('/products', validationName, productController.insert);
 
 app.post('/sales', validationProductId, validationQuantity, salesController.insert);
