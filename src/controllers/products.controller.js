@@ -21,6 +21,13 @@ const update = async (req, res) => {
   res.status(200).json(products);
 };
 
+const remove = async (req, res) => {
+  const { id } = req.params;
+  const deletedProduct = await productService.remove(id);
+  if (deletedProduct.type) return res.status(404).json({ message: 'Product not found' });
+  res.status(204).json();
+};
+
 const insert = async (req, res) => {
   const { name } = req.body;
   const newProduct = await productService.insert({ name });
@@ -33,4 +40,5 @@ module.exports = {
   findById,
   insert,
   update,
+  remove,
 };

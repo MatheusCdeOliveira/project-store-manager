@@ -30,6 +30,13 @@ const update = async (id, name) => {
   return updatedProduct;
 };
 
+const remove = async (id) => {
+  const findProduct = await productsModel.findById(id);
+  if (!findProduct) return { type: 'PRODUCT_NOT_FOUND', message: 'Product not found' };
+  const productToRemove = await productsModel.remove(id);
+  return productToRemove;
+};
+
 const insert = async ({ name }) => {
   const id = await productsModel.insert({ name });
   const { error } = productSchema.validate({ name });
@@ -43,4 +50,5 @@ module.exports = {
   findById,
   insert,
   update,
+  remove,
 };
