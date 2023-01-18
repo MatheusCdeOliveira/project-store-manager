@@ -20,10 +20,45 @@ describe('Testes de unidade da camada model de produtos', function () {
 
     const result = await productsModel.findById(1);
 
-    expect(result).to.be.deep.equal(oneProduct)
+    expect(result).to.be.deep.equal(oneProduct);
   });
 
-   afterEach(function () {
+  it('Inserindo um produto novo', async function () {
+    //arrange
+    const newProduct = {
+      name: 'Matheus'
+    }
+    sinon.stub(connection, 'execute').resolves([{ insertId: 5 }]);
+    //act
+    const result = await productsModel.insert(newProduct);
+    //assert
+    expect(result).to.be.equal(5);
+  });
+
+  it('Atualizando um produto existente', async function () {
+    //arrange
+    const updateProduct = {
+      name: 'Matt Murdock'
+    }
+    const productToUpdate = 2
+    sinon.stub(connection, 'execute').resolves({ id: productToUpdate, name: updateProduct.name});
+    //act
+    const result = await productsModel.update(productToUpdate, updateProduct.name);
+    //assert
+    expect(result).to.be.deep.equal({ id: productToUpdate, name: updateProduct.name});
+  })
+
+    it('Deletando um produto existente', async function () {
+    //arrange
+    sinon.stub(connection, 'execute').resolves([{ deleteRows: 1 }]);
+    const productToRemove = 1
+    //act
+      const result = await productsModel.remove(productToRemove);
+    //assert
+      expect(result).to.be.undefined;
+  })
+
+  afterEach(function () {
     sinon.restore();
   });
-})
+});

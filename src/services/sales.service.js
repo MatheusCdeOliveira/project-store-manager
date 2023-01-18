@@ -8,7 +8,6 @@ const getAll = async () => {
 
 const findById = async (saleId) => {
   const sale = await salesModel.findById(saleId);
-  console.log(sale);
   if (!sale || sale.length === 0) return { type: 'SALE_NOT_FOUND' };
   return sale;
 };

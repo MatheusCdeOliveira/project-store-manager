@@ -14,14 +14,13 @@ const findById = async (productId) => {
 
 const update = async (id, name) => {
   const query = 'UPDATE StoreManager.products SET name = ? WHERE id = ?';
-  const [{ product }] = await connection.execute(query, [name, id]);
-  return product;
+   await connection.execute(query, [name, id]);
+  return { id, name }; 
 };
 
 const remove = async (id) => {
   const query = 'DELETE FROM StoreManager.products WHERE id = ?';
-  const deletedProduct = await connection.execute(query, [id]);
-  return deletedProduct;
+   await connection.execute(query, [id]);
 };
 
 const insert = async ({ name }) => {
@@ -29,7 +28,7 @@ const insert = async ({ name }) => {
   const [{ insertId }] = await connection.execute(query, [name]);
   return insertId;
 };
-
+ 
 module.exports = {
   getAll,
   findById,

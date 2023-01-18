@@ -7,7 +7,6 @@ const getAll = async () => {
   StoreManager.sales_products AS sp ON s.id = sp.sale_id INNER JOIN
   StoreManager.products AS p ON p.id = sp.product_id`;
   const sales = await connection.execute(query);
-  console.log(sales);
   return camelize(sales);
 };
 

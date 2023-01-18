@@ -12,7 +12,7 @@ const validateName = Joi.object({
 const getAll = async () => {
   const products = await productsModel.getAll();
   return products;
-};
+}; 
 
 const findById = async (productId) => {
   const product = await productsModel.findById(productId);
@@ -25,16 +25,15 @@ const update = async (id, name) => {
   if (error) return { message: error.message };
   const searchProduct = await productsModel.findById(id);
   if (!searchProduct) return { type: 'PRODUCT_NOT_FOUND', message: 'Product not found' };
-  await productsModel.update(id, name);
-  const updatedProduct = await findById(id);
-  return updatedProduct;
+  const product = await productsModel.update(id, name);
+  return product;
 };
 
 const remove = async (id) => {
   const findProduct = await productsModel.findById(id);
   if (!findProduct) return { type: 'PRODUCT_NOT_FOUND', message: 'Product not found' };
-  const productToRemove = await productsModel.remove(id);
-  return productToRemove;
+   await productsModel.remove(id);
+  return findProduct;
 };
 
 const insert = async ({ name }) => {
