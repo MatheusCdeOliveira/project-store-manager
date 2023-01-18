@@ -5,7 +5,6 @@ const sinonChai = require('sinon-chai');
 const { expect } = chai;
 chai.use(sinonChai);
 
-
 const { productService } = require('../../../src/services');
 
 const { allProducts, oneProduct } = require('../models/mocks/product.model.mock');
