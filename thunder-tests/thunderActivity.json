@@ -210,13 +210,18 @@
     "colId": "history",
     "containerId": "",
     "name": "localhost:3000/products",
-    "url": "localhost:3000/sales/2",
-    "method": "GET",
+    "url": "localhost:3000/sales",
+    "method": "POST",
     "sortNum": 0,
     "created": "2023-01-14T00:08:29.341Z",
-    "modified": "2023-01-18T22:14:17.455Z",
+    "modified": "2023-01-20T00:26:15.392Z",
     "headers": [],
     "params": [],
+    "body": {
+      "type": "json",
+      "raw": "[{\n  \"productId\": 999,\n  \"quantity\": 1\n}]",
+      "form": []
+    },
     "tests": []
   }
 ]
